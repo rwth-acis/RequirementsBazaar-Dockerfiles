@@ -21,4 +21,4 @@ Of course you can build the image yourself if you don't want to rely on Docker H
 # What next?
 The backend is great on its own, but what makes it useful is a frontend. To get one, take a look at this GitHub project:
 
-**[<i class="icon-link "></i>Requirement Bazaar Web Frontend](https://github.com/rwth-acis/RequirementsBazaar-WebFrontend)**
+**[<i class="icon-link "></i>Requirement Bazaar Web Frontend](https://github.com/rwth-acis/RequirementsBazaar-Dockerfiles/tree/master/reqbaz-web)**
