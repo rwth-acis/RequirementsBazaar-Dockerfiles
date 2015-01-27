@@ -22,12 +22,11 @@ RUN mkdir /build
 WORKDIR /build
 
 # Download and unzip newest build from CI server
-RUN wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar/lastSuccessfulBuild/artifact/*zip*/archive.zip
-RUN unzip archive.zip
-
 # Start the mysql daemon
 # dos2unix fixes the "textfile open" error
-CMD service mysql start && \
+CMD wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar/lastSuccessfulBuild/artifact/*zip*/archive.zip && \
+    unzip archive.zip && \
+    service mysql start && \
     cd archive && \
     echo "CREATE DATABASE reqbaz;" | mysql -u root && \
     mysql -u root reqbaz < ./etc/ReqBaz_create.sql && \
