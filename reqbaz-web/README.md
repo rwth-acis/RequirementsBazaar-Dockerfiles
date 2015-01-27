@@ -15,6 +15,7 @@ To run it, simply call:
 
 # Build it on your own
 Of course you can build the image yourself
+
 1. `git clone https://github.com/rwth-acis/RequirementsBazaar-Dockerfiles.git`
 2. `cd RequirementsBazaar-Dockerfiles/reqbaz-web`
 3. `docker build -t rwthacis/reqbaz-web .`
