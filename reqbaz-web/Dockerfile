@@ -30,6 +30,7 @@ CMD wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar%20F
     mv app/styles/mdi.html dist/styles/mdi.html && \
     cd dist && \
     sed -i 's/localhost/'$REQBAZ_HOST'/g' scripts/scripts*.js && \
+    sed -i 's/localhost:9000/'$REQBAZ_HOST'/g' views/main.html && \
     python -m SimpleHTTPServer 80
 
 EXPOSE 80
