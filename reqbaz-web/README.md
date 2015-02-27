@@ -11,7 +11,7 @@ https://registry.hub.docker.com/u/rwthacis/reqbaz-web/
 
 To run it, simply call:
 
-`docker run -it -p 80:80 rwthacis/reqbaz-web`
+`docker run -d -p 80:80 rwthacis/reqbaz-web`
 
 There is an environment variable called `REQBAZ_HOST` where you should enter the address of the backend. If you leave it out, it will fall back to `192.168.59.103` which is the default IP of the boot2docker VM. Just to make sure, type
 
