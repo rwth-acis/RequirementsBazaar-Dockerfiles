@@ -9,7 +9,7 @@ https://registry.hub.docker.com/u/rwthacis/reqbaz-service/
 
 To run it, simply call:
 
-`docker run -it -p 8080:8080 rwthacis/reqbaz-service`
+`docker run -d -p 8080:8080 rwthacis/reqbaz-service`
 
 ## Build it on your own
 Of course you can build the image yourself if you don't want to rely on Docker Hub:
