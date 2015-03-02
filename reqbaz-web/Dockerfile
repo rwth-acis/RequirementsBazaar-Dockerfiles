@@ -27,12 +27,9 @@ CMD wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar%20F
     unzip archive.zip && \
     cd archive && \
     mv bower_components dist/bower_components && \
-    mv app/styles/mdi.html dist/styles/mdi.html && \
-    mv app/styles/sign-in-button.html dist/styles/sign-in-button.html && \
-    mkdir dist/scripts/myComponents && \
-    mv app/scripts/myComponents/paper-dropdown-menu-ex.html dist/scripts/myComponents/paper-dropdown-menu-ex.html && \
-    mv app/scripts/myComponents/my-user.html dist/scripts/myComponents/my-user.html && \
+    mv app/my-components dist/my-components && \
     cd dist && \
+    sed -i 's/localhost:9000/'$REQBAZ_HOST'/g' scripts/scripts*.js && \
     sed -i 's/localhost/'$REQBAZ_HOST'/g' scripts/scripts*.js && \
     sed -i 's/localhost:9000/'$REQBAZ_HOST'/g' views/main.html && \
     python -m SimpleHTTPServer 80
