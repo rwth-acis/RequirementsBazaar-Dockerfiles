@@ -19,7 +19,7 @@ There is an environment variable called `REQBAZ_HOST` where you should enter the
 
 of your boot2docker bash. If it returns a different IP like `192.168.59.104`, you have to start the backend like this:
 
-`docker run -it -p 80:80 -e REQBAZ_HOST=192.168.59.104 rwthacis/reqbaz-web`
+`docker run -d -p 80:80 -e REQBAZ_HOST=192.168.59.104 rwthacis/reqbaz-web`
 
 ## Build it on your own
 Of course you can build the image yourself
