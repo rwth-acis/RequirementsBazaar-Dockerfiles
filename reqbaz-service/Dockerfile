@@ -1,19 +1,12 @@
-FROM ubuntu:14.04
+FROM learninglayers/base
+
 MAINTAINER István Koren <koren ÄT dbis.rwth-aachen.de>
 
-# Let the container know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
-
-# Update base image
-RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list
-RUN apt-get update -y
-RUN apt-get upgrade -y
-
-# Install build tools
+# Install dependencies
 RUN apt-get install -y \
                      wget \
                      unzip \
-                     mysql-server \
+                     mysql-client \
                      openjdk-7-jre \
                      dos2unix
 
@@ -22,15 +15,15 @@ RUN mkdir /build
 WORKDIR /build
 
 # Download and unzip newest build from CI server
-# Start the mysql daemon
 # dos2unix fixes the "textfile open" error
 CMD wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar/lastSuccessfulBuild/artifact/*zip*/archive.zip && \
     unzip archive.zip && \
-    service mysql start && \
     cd archive && \
-    echo "CREATE DATABASE reqbaz;" | mysql -u root && \
-    mysql -u root reqbaz < ./etc/ReqBaz_create.sql && \
-    mysql -u root reqbaz < ./etc/ReqBaz_demo_data.sql && \
+    mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_HOST $MYSQL_DATABASE < ./etc/ReqBaz_create.sql && \
+    mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h$MYSQL_HOST $MYSQL_DATABASE < ./etc/ReqBaz_demo_data.sql && \
+    sed -i "s/root/${MYSQL_USER}/g" ./etc/de.rwth.dbis.acis.bazaar.service.BazaarService.properties && \
+    sed -i "s/dbPassword\s\s=/dbPassword  = ${MYSQL_PASSWORD}/g" ./etc/de.rwth.dbis.acis.bazaar.service.BazaarService.properties && \
+    sed -i "s/localhost/${MYSQL_HOST}/g" ./etc/de.rwth.dbis.acis.bazaar.service.BazaarService.properties && \
     dos2unix bin/start_network.sh && \
     chmod +x bin/start_network.sh && \
     bin/start_network.sh
