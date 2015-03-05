@@ -23,7 +23,7 @@ Replace `pass` with a meaningful root password. To create a database and user th
 
 Replace `pass` with the MySQL root password, `reqbaz` with the database name and `myuser` with the desired username. The command-like docker container will return a randomly generated password for this user. Finally, you may simply start the Requirements Bazaar like this:
 
-`docker run -d -p 8080:8080 -e MYSQL_HOST=host -e MYSQL_DATABASE=reqbaz -e MYSQL_USER=user -e MYSQL_PASSWORD=pass --link mysql:mysql rwthacis/reqbaz-service`
+`docker run -d -p 8080:8080 -e MYSQL_HOST=mysql -e MYSQL_DATABASE=reqbaz -e MYSQL_USER=user -e MYSQL_PASSWORD=pass --link mysql:mysql rwthacis/reqbaz-service`
 
 ## Build it on your own
 Of course you can build the image yourself if you don't want to rely on Docker Hub:
