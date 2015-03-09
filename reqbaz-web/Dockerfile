@@ -29,9 +29,8 @@ CMD wget http://layers.dbis.rwth-aachen.de/jenkins/job/Requirements%20Bazaar%20F
     mv bower_components dist/bower_components && \
     mv app/my-components dist/my-components && \
     cd dist && \
-    sed -i 's/localhost:9000/'$REQBAZ_HOST'/g' scripts/scripts*.js && \
-    sed -i 's/localhost/'$REQBAZ_HOST'/g' scripts/scripts*.js && \
-    sed -i 's/localhost:9000/'$REQBAZ_HOST'/g' views/main.html && \
+    sed -i 's#http://localhost:9000/#'$REQBAZ_FRONTEND_URI'#g' scripts/scripts*.js && \
+    sed -i 's#http://localhost:8080/bazaar/#'$REQBAZ_BACKEND_URI'#g' scripts/scripts*.js && \
     python -m SimpleHTTPServer 80
 
 EXPOSE 80
